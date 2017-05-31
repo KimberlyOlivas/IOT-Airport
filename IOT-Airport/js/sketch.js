@@ -2,6 +2,7 @@
 var backgnd;
 var user;
 var airplane;
+var store;
 
 //Arrays
 var walls = [];
@@ -16,6 +17,7 @@ var scannerImage;
 var machineImage;
 var chairImage;
 var airplaneImage;
+var storeImage;
 
 function preload(){
 	userImage = loadImage("images/user.png");
@@ -24,6 +26,7 @@ function preload(){
 	machineImage = loadImage("images/machine.png");
 	chairImage = loadImage("images/chair.png");
 	airplaneImage = loadImage("images/airplane.png");
+	storeImage = loadImage("images/store.png");
 }
 
 function setup(){
@@ -44,6 +47,8 @@ function setup(){
 					chairs.push(new Chair(j * 32, i * 32));
 			if(backgnd.matrix[i][j] === 'a')
 					airplane = new Airplane(j * 32, i * 32);
+					if (backgnd.matrix[i][j] === 'st')
+        store = new Store(j * 32, i * 32);
 		}
 }
 
@@ -57,12 +62,13 @@ function draw(){
 		machines[i].show();
 	for(var i = 0; i < chairs.length; i++)
 		chairs[i].show();
+		  store.show();
 	user.show();
 	airplane.show();
 	for(var i = 0; i < machines.length; i++){
 		if(user.colission(machines[i])){
 			user.setY(8);
-			$("#modal").load("first.html");
+			$("#modal").load("equipaje.html");
 		}
 	}
 }
