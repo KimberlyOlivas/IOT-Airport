@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8"></meta>
+  <link rel="stylesheet" title="style" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+  <div id="modal" class="modal">
+    <div class="modal-content container">
+      <div style="display: inline-block; vertical-align:top; margin-right: 70px; ">
+        <br><br><br>
+        <div><img id="cellphone" src="images/cellQR.png" draggable="true" ondragstart="drag(event)" width="300" height="300" style="float:left"></div>
+        <br>
+        <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="t" src="images/baggage.png" width="250" height="250" style="float:left"></div>
+      </div>
+      <div class="modal-body" align= "center" style="display: inline-block; width: 50%; height:100%">
+        <center>
+        <div class="container" style="margin: 33% auto;">
+          <center>
+            <img id="Icell" src="images/QRCell2.png" width="200" style="width:90px;height:90px;">
+            <span> 1. Scan your QR code in the panel below.</span><br>
+            <img id="Ibag" src="images/luggage.png" width="200" style="width:90px;height:90px;">
+            <span> 2. Take the ticket and tag your baggage. </span>
+            <br><br>
+
+            <div id="check" class="QRscan" ondrop="drop(event)" ondragover="allowDrop(event)" style="vertical-align: bottom;">
+              <button id="okBtn" class="btn btn-default" type="button" style="display:none;"> OK </button>
+              <span id="spTicket" hidden="true">
+                <img id="ticket" src="images/tag.png" draggable="true" ondragstart="drag(event)" width="90" height="90">
+              </span>
+            </div>
+          </center>
+        </div>
+      </center>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</body>
+<script>
+  var modal = document.getElementById('modal');
+  var btn = document.getElementById("okBtn");
+  var steps = 1;
+
+  modal.style.display = "block";
+
+  btn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+
+  function allowDrop(ev) {   
+    ev.preventDefault();
+  }
+
+  function drag(ev) {   
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+
+  function drop(ev) {
+    ev.preventDefault();   
+    var data = ev.dataTransfer.getData("text");
+    var imag = document.getElementById(data);
+    var btn = document.getElementById("okBtn");
+
+    if (steps == 1 && data == "cellphone") {   
+      ev.target.appendChild(imag);
+      steps++;
+      document.getElementById("Icell").src = "images/QRcell2V.png";
+      window.alert("Successful code scanning!");
+      document.getElementById("spTicket").hidden = false;
+      ev.target.removeChild(imag);
+    }
+    if (steps == 2 && data == "ticket") {   
+      ev.target.appendChild(imag);
+      steps++;
+      document.getElementById("Ibag").src = "images/luggageV.png";
+      window.alert("Successful baggage tagging!");
+      ev.target.removeChild(imag);
+    }
+    if (steps == 3) {   
+      btn.style.display = "block";
+    }
+  }
+  </script>
+</html>
