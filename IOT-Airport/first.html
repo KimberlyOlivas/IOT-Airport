@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"></meta>
+    <link rel = "stylesheet" title = "style" type = "text/css" href ="css/style.css"/>
+  </head>
+  <body>
+    <div id="firstModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-body">
+          <span class="cerrarFirstModal" id="close"> X </span>
+        </div>
+      </div>
+    </div>
+  </body>
+<script>
+  var modal = document.getElementById('firstModal');
+  var close = document.getElementsByClassName("cerrarFirstModal")[0];
+
+  modal.style.display = "block";
+
+  close.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+</html>
