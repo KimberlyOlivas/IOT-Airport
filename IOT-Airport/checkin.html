@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"></meta>
+    <script src = "libraries/p5.js" type = "text/javascript"></script>
+    <script src = "libraries/p5.dom.js" type = "text/javascript"></script>
+    <script src = "libraries/p5.sound.js" type = "text/javascript"></script>
+    <link rel = "stylesheet" title = "style" type = "text/css" href ="css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div id="canvas" class="modal-body">
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var x = 800;
+    var y = 150;
+    var frame = 3;
+    var end = 0;
+    var bkgrd;
+    var canvas
+    var user2Image;
+    var cellphoneImage;
+    var msg1Image;
+    var msg2Image;
+    var msg3Image;
+    var msg4Image;
+    var signalImage;
+    var ticketImage;
+    var qrcodeImage;
+    var checkinImage;
+    var modal = document.getElementById('modal');
+
+    function setup(){
+      bkgrd = loadImage("images/zoomCheckin.png");
+      user2Image = loadImage("images/user2.png");
+      cellphoneImage = loadImage("images/cellphone.png");
+      signalImage = loadImage("images/signal.png")
+      ticketImage = loadImage("images/ticket.png");
+      qrcodeImage = loadImage("images/qrcode.png");
+      checkinImage = loadImage("images/checkin.png");
+      msg1Image = loadImage("images/msg1Checkin.png");
+      msg2Image = loadImage("images/msg2Checkin.png");
+      msg3Image = loadImage("images/msg3Checkin.png");
+      msg4Image = loadImage("images/msg4Checkin.png");
+      var canvas = createCanvas(1100,650);
+      canvas.parent('canvas');
+      modal.style.display = "block";
+    }
+
+    function draw(){
+        background(bkgrd);
+      	image(user2Image, x, y, 272, 495, 272*frame, 0, 272, 494);
+        image(cellphoneImage, -100, 50);
+        if(frame  === 0)
+          frame = 3;
+        if(x === 700){
+          image(msg1Image, 55, 120, 200,200);
+          image(signalImage, 55, 250, 200,200);
+        }
+        if(x === 600){
+          image(msg2Image, 55, 150, 200,200);
+          image(ticketImage, 55, 250, 200,200);
+        }
+        if(x === 500){
+          image(msg3Image, 55, 100, 200,200);
+          image(qrcodeImage, 55, 300, 200,200);
+        }
+        if(x === 400){
+          image(msg4Image, 55, 100, 200,200);
+          image(checkinImage, 55, 300, 200,200);
+        }
+        if(x === 300)
+          modal.style.display = "none";
+    }
+
+    function keyPressed(){
+    	if(keyCode === LEFT_ARROW){
+        x -= 50;
+    		frame--;
+    	}
+    }
+  </script>
+</html>
