@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"></meta>
+    <link rel = "stylesheet" title = "style" type = "text/css" href ="css/style.css"/>
+  </head>
+  <body>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div id="body" class="modal-body">
+          <div style="display: block">
+            <div style="display: inline-block; vertical-align:top; margin-right: 70px">
+              <br><br><h2> Your personal items: </h2>
+              <div><img id="passport" src="images/passport.png" raggable="true"
+                ondragstart="drag(event)" width="180" height="150" style="float:left"></div>
+			  <div><img id="facial" src="images/facial.png" raggable="true"
+                ondragstart="drag(event)" width="140" height="140" style="float:left"></div>
+			</div>
+            <div style="display: inline-block; vertical-align:top; margin-left: 120px">
+              <br><br><br><br><br><br>
+              <center>
+              <h4>Migration process..</h4>
+			    <span>First: <img id="Ipassport" src="images/passportIcon.png" width="60" height="60"></span>
+				<span>Second:<img id="Ifacial" src="images/facialIcon.png" width="60" height="60"></span>
+				<h4>First, show me your passport! </h4>
+				<div id="divCheck" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+				<button id="okBtn" class="btn btn-default" type="button" style="display:none;"> OK </button>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var modal = document.getElementById('modal');
+    var body = document.getElementById('body');
+    var btn = document.getElementById("okBtn");
+    var steps = 1;
+
+    body.style.backgroundImage = "url('images/zoomMachine.png')";
+    body.style.backgroundRepeat= "no-repeat";
+    body.style.backgroundSize= "auto 100%";
+    body.style.backgroundPosition= "center";
+
+    modal.style.display = "block";
+
+    btn.onclick = function() {
+      modal.style.display = "none";
+      window.close();
+    }
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var imag = document.getElementById(data);
+        var btn = document.getElementById("okBtn");
+        var text = document.getElementsByTagName("h4")[1];
+		
+		if(steps == 1 && data == "passport"){
+          ev.target.appendChild(imag);
+          steps++;
+          document.getElementById("Ipassport").src = "images/passportIconC.png";
+          text.innerText = "Now move closer to the face recognition screen, please!";
+          window.alert("Successful passport review!");
+          ev.target.removeChild(imag);
+        }
+		
+        if(steps == 2 && data == "facial"){
+          ev.target.appendChild(imag);
+          steps++;
+          document.getElementById("Ifacial").src = "images/facialIconC.png";
+          text.innerText = "Complete migration process. Welcome!";
+          window.alert("Successful face recognition!");
+          ev.target.removeChild(imag);
+        }	
+		
+		if(steps == 3){
+          var check = document.createElement("img");
+          check.src = "images/idCheck.png";
+          check.width = "180";
+          check.height = "180";
+          ev.target.appendChild(check);
+          btn.style.display = "block";;
+        }
+
+    }
+  </script>
+</html>
