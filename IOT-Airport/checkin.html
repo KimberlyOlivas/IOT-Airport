@@ -75,8 +75,10 @@
           image(msg4Image, 55, 100, 200, 200);
           image(checkinImage, 55, 300, 200, 200);
         }
-        if(x === 300)
+        if(x === 300){
           modal.style.display = "none";
+          window.close();
+        }
     }
 
     function keyPressed(){

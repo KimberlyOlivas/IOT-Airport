@@ -7,7 +7,7 @@
   <body>
     <div id="modal" class="modal">
       <div class="modal-content">
-        <div class="modal-body">
+        <div id="body" class="modal-body">
           <div style="display: block">
             <div style="display: inline-block; vertical-align:top; margin-right: 70px">
               <br><br><h2> Your personal items: </h2>
@@ -38,13 +38,20 @@
   </body>
   <script>
     var modal = document.getElementById('modal');
+    var body = document.getElementById('body');
     var btn = document.getElementById("okBtn");
     var steps = 1;
+
+    body.style.backgroundImage = "url('images/zoomMachine.png')";
+    body.style.backgroundRepeat= "no-repeat";
+    body.style.backgroundSize= "auto 100%";
+    body.style.backgroundPosition= "center";
 
     modal.style.display = "block";
 
     btn.onclick = function() {
       modal.style.display = "none";
+      window.close();
     }
 
     function allowDrop(ev) {

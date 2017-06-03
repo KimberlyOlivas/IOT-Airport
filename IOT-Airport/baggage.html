@@ -15,7 +15,7 @@
         <br>
         <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="t" src="images/baggage.png" width="250" height="250" style="float:left"></div>
       </div>
-      <div class="modal-body" align= "center" style="display: inline-block; width: 50%; height:100%">
+      <div class="modal-body" id="body" align= "center" style="display: inline-block; width: 50%; height:100%">
         <center>
         <div class="container" style="margin: 33% auto;">
           <center>
@@ -33,7 +33,7 @@
             </div>
           </center>
         </div>
-      </center>
+        </center>
       </div>
     </div>
   </div>
@@ -42,13 +42,20 @@
 </body>
 <script>
   var modal = document.getElementById('modal');
+  var body = document.getElementById('body');
   var btn = document.getElementById("okBtn");
   var steps = 1;
+
+  body.style.backgroundImage = "url('images/zoomMachine.png')";
+  body.style.backgroundRepeat= "no-repeat";
+  body.style.backgroundSize= "auto 100%";
+  body.style.backgroundPosition= "center";
 
   modal.style.display = "block";
 
   btn.onclick = function() {
     modal.style.display = "none";
+    window.close();
   }
 
 

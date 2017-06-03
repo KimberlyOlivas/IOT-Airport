@@ -17,17 +17,17 @@ h2{
 }
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 200 !important; /* Sit on top */
-    padding-top: 30px; /* Location of the box */
+    display: none;
+    position: fixed;
+    z-index: 200 !important;
+    padding-top: 30px;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.8);
 }
 
 .modal-content {
@@ -37,7 +37,6 @@ h2{
     padding: 0;
     width: 80%;
     height: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -56,10 +55,6 @@ h2{
 
 .modal-body{
   height: 100%;
-  background-image: url("../images/zoomMachine.png") !important;
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-position: center;
 }
 
 #divCheck {

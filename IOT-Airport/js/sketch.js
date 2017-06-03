@@ -68,7 +68,7 @@ function draw(){
 	for(var i = 0; i < machines.length; i++){
 		if(user.colission(machines[i])){
 			user.setY(8);
-			$("#modal").load("equipaje.html");
+			window.open("identity.html",'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
 		}
 	}
 }

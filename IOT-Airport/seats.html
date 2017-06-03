@@ -63,8 +63,10 @@
           image(msg2Image, 55, 200, 200, 300);
           frame2 = 0;
         }
-        if(x >= 820)
+        if(x >= 820){
           modal.style.display = "none";
+          window.close();
+        }
     }
 
     function keyPressed(){
