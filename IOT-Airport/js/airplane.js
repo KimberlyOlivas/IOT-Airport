@@ -4,6 +4,6 @@ function Airplane(x,y){
 	this.radius = 35;
 
 	this.show = function(){
-		image(airplaneImage,x,y,70,70);
+		image(airplaneImage,x,y,150,150);
 	}
 }

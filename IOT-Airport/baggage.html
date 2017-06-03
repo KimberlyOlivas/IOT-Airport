@@ -9,22 +9,24 @@
 <body>
   <div id="modal" class="modal">
     <div class="modal-content container">
-      <div style="display: inline-block; vertical-align:top; margin-right: 70px; ">
+      <div style="display: inline-block; vertical-align:top; margin-right: 0px;">
         <br><br><br>
         <div><img id="cellphone" src="images/cellQR.png" draggable="true" ondragstart="drag(event)" width="300" height="300" style="float:left"></div>
         <br>
-        <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="t" src="images/baggage.png" width="250" height="250" style="float:left"></div>
+        <div ><img id="baggage" src="images/baggage.png" width="250" height="250" style="float:left" ondrop="drop(event)" ondragover="allowDrop(event)"
+           draggable="true" ondragstart="drag(event)"></div>
       </div>
       <div class="modal-body" id="body" align= "center" style="display: inline-block; width: 50%; height:100%">
         <center>
-        <div class="container" style="margin: 33% auto;">
+        <div class="container" style="margin: 30% auto;">
           <center>
             <img id="Icell" src="images/QRCell2.png" width="200" style="width:90px;height:90px;">
             <span> 1. Scan your QR code in the panel below.</span><br>
             <img id="Ibag" src="images/luggage.png" width="200" style="width:90px;height:90px;">
-            <span> 2. Take the ticket and tag your baggage. </span>
+            <span> 2. Take the ticket and tag your baggage. </span><br>
+            <img id="Icar" src="images/carouselG.png" width="200" style="width:90px;height:90px;">
+            <span> 3. Take your baggage to the conveyor belt. </span>
             <br><br>
-
             <div id="check" class="QRscan" ondrop="drop(event)" ondragover="allowDrop(event)" style="vertical-align: bottom;">
               <button id="okBtn" class="btn btn-default" type="button" style="display:none;"> OK </button>
               <span id="spTicket" hidden="true">
@@ -34,6 +36,9 @@
           </center>
         </div>
         </center>
+      </div>
+      <div style="display: inline-block; vertical-align:top;">
+        <div><img id="carousel" src="images/carousel1.png" hidden width="300" height="300" style="float:left" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>
     </div>
   </div>
@@ -87,8 +92,16 @@
       document.getElementById("Ibag").src = "images/luggageV.png";
       window.alert("Successful baggage tagging!");
       ev.target.removeChild(imag);
+      document.getElementById("carousel").hidden = false;
     }
-    if (steps == 3) {   
+    if (steps == 3 && data == "baggage") {   
+      ev.target.appendChild(imag);
+      steps++;
+      document.getElementById("Icar").src = "images/carouselV.png";
+      window.alert("Your baggage is in its way to the airplane!");
+      ev.target.removeChild(imag);
+    }
+    if (steps == 4) {   
       btn.style.display = "block";
     }
   }

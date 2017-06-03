@@ -4,6 +4,6 @@ function Machine(x,y){
 	this.radius = 33;
 
 	this.show = function(){
-		image(machineImage,x,y,66,66);
+		image(machineImage,x,y,50,50);
 	}
 }

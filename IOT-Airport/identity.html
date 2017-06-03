@@ -1,107 +1,111 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8"></meta>
-    <link rel = "stylesheet" title = "style" type = "text/css" href ="css/style.css"/>
-  </head>
-  <body>
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <div id="body" class="modal-body">
-          <div style="display: block">
-            <div style="display: inline-block; vertical-align:top; margin-right: 70px">
-              <br><br><h2> Your personal items: </h2>
-              <div><img id="ticket" src="images/QRCell2.png" raggable="true"
-                ondragstart="drag(event)" width="180" height="180" style="float:left"></div>
-              <div><img id="passport" src="images/passport.png" raggable="true"
-                ondragstart="drag(event)" width="180" height="180" style="float:left"></div>
-              <div><img id="fingerprint" src="images/fingerprint.png" raggable="true"
-                ondragstart="drag(event)" width="180" height="150" style="float:left"></div>
-            </div>
-            <div style="display: inline-block; vertical-align:top; margin-left: 65px">
-              <br><br><br><br><br>
-              <center>
-              <h4>Follow the steps..</h4>
-              <span>First: <img id="Iticket" src="images/ticketIcon.png" width="60" height="65"></span>
-              <span>Second: <img id="Ipassport" src="images/passportIcon.png" width="60" height="60"></span>
-              <span>Third:<img id="Ifingerprint" src="images/fingerprintIcon.png" width="60" height="60"></span>
-              <h4>First show me your ticket's QR code, please! </h4>
-              <div id="divCheck" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-              <br><br>
-              <button id="okBtn" class="btn btn-default" type="button" style="display:none;"> OK </button>
-              </center>
-            </div>
+
+<head>
+  <meta charset="UTF-8"></meta>
+  <link rel="stylesheet" title="style" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div id="body" class="modal-body">
+        <div style="display: block">
+          <div style="display: inline-block; vertical-align:top; margin-right: 70px">
+            <br><br>
+            <h2> Your personal items: </h2>
+            <div><img id="ticket" src="images/QRCell2.png" raggable="true" ondragstart="drag(event)" width="180" height="180" style="float:left"></div>
+            <div><img id="passport" src="images/passport.png" raggable="true" ondragstart="drag(event)" width="180" height="180" style="float:left"></div>
+            <div><img id="fingerprint" src="images/fingerprint.png" raggable="true" ondragstart="drag(event)" width="180" height="150" style="float:left"></div>
+          </div>
+          <div class="modal-body" id="body" align="center" style="display: inline-block; width: 50%; height:100%">
+            <center>
+              <div class="container" style="margin: 25% auto;">
+                <center>
+                  <h4>Follow the steps..</h4>
+                  <span>First: <img id="Iticket" src="images/ticketIcon.png" width="60" height="65"></span>
+                  <span>Second: <img id="Ipassport" src="images/passportIcon.png" width="60" height="60"></span>
+                  <span>Third:<img id="Ifingerprint" src="images/fingerprintIcon.png" width="60" height="60"></span>
+                  <h4>First show me your ticket's QR code, please! </h4>
+                  <div id="divCheck" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                  <br><br>
+                  <button id="okBtn" class="btn btn-default" type="button" style="display:none;"> OK </button>
+                </center>
+              </div>
+            </center>
           </div>
         </div>
       </div>
     </div>
-  </body>
-  <script>
-    var modal = document.getElementById('modal');
-    var body = document.getElementById('body');
+  </div>
+</body>
+<script>
+  var modal = document.getElementById('modal');
+  var body = document.getElementById('body');
+  var btn = document.getElementById("okBtn");
+  var steps = 1;
+
+  body.style.backgroundImage = "url('images/zoomMachine.png')";
+  body.style.backgroundRepeat = "no-repeat";
+  body.style.backgroundSize = "auto 100%";
+  body.style.backgroundPosition = "center";
+
+  modal.style.display = "block";
+
+  btn.onclick = function() {
+    modal.style.display = "none";
+    window.close();
+  }
+
+  function allowDrop(ev) {   
+    ev.preventDefault();
+  }
+
+  function drag(ev) {   
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+
+  function drop(ev) {   
+    ev.preventDefault();   
+    var data = ev.dataTransfer.getData("text");
+    var imag = document.getElementById(data);
     var btn = document.getElementById("okBtn");
-    var steps = 1;
+    var text = document.getElementsByTagName("h4")[1];
 
-    body.style.backgroundImage = "url('images/zoomMachine.png')";
-    body.style.backgroundRepeat= "no-repeat";
-    body.style.backgroundSize= "auto 100%";
-    body.style.backgroundPosition= "center";
-
-    modal.style.display = "block";
-
-    btn.onclick = function() {
-      modal.style.display = "none";
-      window.close();
+    if (steps == 1 && data == "ticket") {   
+      ev.target.appendChild(imag);
+      steps++;
+      document.getElementById("Iticket").src = "images/ticketIconC.png";
+      text.innerText = "Now show me your passport, please!";
+      window.alert("Successful ticket review!");
+      ev.target.removeChild(imag);
     }
-
-    function allowDrop(ev) {
-      ev.preventDefault();
+    if (steps == 2 && data == "passport") {   
+      ev.target.appendChild(imag);
+      steps++;
+      document.getElementById("Ipassport").src = "images/passportIconC.png";
+      text.innerText = "Finally show me your fingerprint, please!";
+      window.alert("Successful passport review!");
+      ev.target.removeChild(imag);
     }
-
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
+    if (steps == 3 && data == "fingerprint") {   
+      ev.target.appendChild(imag);
+      steps++;
+      document.getElementById("Ifingerprint").src = "images/fingerprintIconC.png";
+      text.innerText = "Identity review completed. See you soon!";
+      window.alert("Successful fingerprint review!");
+      ev.target.removeChild(imag);
     }
-
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        var imag = document.getElementById(data);
-        var btn = document.getElementById("okBtn");
-        var text = document.getElementsByTagName("h4")[1];
-
-        if(steps == 1 && data == "ticket"){
-          ev.target.appendChild(imag);
-          steps++;
-          document.getElementById("Iticket").src = "images/ticketIconC.png";
-          text.innerText = "Now show me your passport, please!";
-          window.alert("Successful ticket review!");
-          ev.target.removeChild(imag);
-        }
-        if(steps == 2 && data == "passport"){
-          ev.target.appendChild(imag);
-          steps++;
-          document.getElementById("Ipassport").src = "images/passportIconC.png";
-          text.innerText = "Finally show me your fingerprint, please!";
-          window.alert("Successful passport review!");
-          ev.target.removeChild(imag);
-        }
-        if(steps == 3 && data == "fingerprint"){
-          ev.target.appendChild(imag);
-          steps++;
-          document.getElementById("Ifingerprint").src = "images/fingerprintIconC.png";
-          text.innerText = "Identity review completed. See you soon!";
-          window.alert("Successful fingerprint review!");
-          ev.target.removeChild(imag);
-        }
-        if(steps == 4){
-          var check = document.createElement("img");
-          check.src = "images/idCheck.png";
-          check.width = "180";
-          check.height = "180";
-          ev.target.appendChild(check);
-          btn.style.display = "block";
-          window.alert("Successful identity review!");
-        }
+    if (steps == 4) {
+      var check = document.createElement("img");
+      check.src = "images/idCheck.png";
+      check.width = "180";
+      check.height = "180";
+      ev.target.appendChild(check);
+      btn.style.display = "block";
+      window.alert("Successful identity review!");
     }
-  </script>
+  }
+</script>
+
 </html>
