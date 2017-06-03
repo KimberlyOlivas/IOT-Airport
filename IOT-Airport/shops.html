@@ -74,14 +74,16 @@
           image(offer5Image, 100, 4, 400, 300);
           cont5 = true;
         }
-        if(x === 300)
+        if(x === 300){
           modal.style.display = "none";
+		  window.close();
+		}
     }
 
     function keyPressed(){
     	if(keyCode === LEFT_ARROW){
-        x -= 50;
-    		frame--;
+	      x -= 50;
+    	  frame--;
     	}
     }
   </script>

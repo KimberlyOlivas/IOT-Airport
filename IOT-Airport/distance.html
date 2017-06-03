@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"></meta>
+    <script src = "libraries/p5.js" type = "text/javascript"></script>
+    <script src = "libraries/p5.dom.js" type = "text/javascript"></script>
+    <script src = "libraries/p5.sound.js" type = "text/javascript"></script>
+    <link rel = "stylesheet" title = "style" type = "text/css" href ="css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div id="canvas" class="modal-body">
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var x = 200;
+    var y = 150;
+    var frame = 0;
+    var dir = 1;
+    var bkgrd;
+    var canvas
+    var user4Image;
+    var cellphoneImage;
+    var notificationImage;
+    var baggage2;
+    var msg2Image;
+    var exitImage;
+    var forgot = false;
+    var modal = document.getElementById('modal');
+
+    function setup(){
+      bkgrd = loadImage("images/zoomSeats2.jpg");
+      user4Image = loadImage("images/user4.png");
+      notificationImage = loadImage("images/notification.png");
+      cellphoneImage = loadImage("images/cellphone.png");
+      baggage2 = loadImage("images/baggage2.png");
+      msgBagImage = loadImage("images/msgBag.png");
+      exitImage = loadImage("images/exit.png")
+      var canvas = createCanvas(1100,650);
+      canvas.parent('canvas');
+      modal.style.display = "block";
+    }
+
+    function draw(){
+        background(bkgrd);
+      	image(user4Image, x, y, 265, 495, 265*frame, 494*dir, 265, 494);
+        image(exitImage, 900, 30, 100, 50);
+        if(forgot == false)
+          image(baggage2, 30, 110, 130, 100);
+        if(forgot == true)
+          image(baggage2, x, 420, 130, 100);
+        if(frame >= 3 && dir === 1)
+          frame = 0;
+        if(frame <= 0 && dir === 0)
+          frame = 3;
+        if(x === 750 && forgot == false){
+          image(cellphoneImage, 200, 50);
+          image(notificationImage, 350, 100, 100, 100);
+          image(msgBagImage, 355, 200, 200, 300);
+          frame2 = 0;
+        }
+        if(x === 100 && forgot == false)
+          forgot = true;
+        if(x >= 820){
+          modal.style.display = "none";
+          window.close();
+        }
+    }
+
+    function keyPressed(){
+    	if(keyCode === RIGHT_ARROW){
+          x += 50;
+          dir = 1;
+          frame++;
+    	}
+      if(keyCode === LEFT_ARROW){
+          x -= 50;
+          dir = 0;
+          frame--;
+      }
+    }
+  </script>
+</html>
