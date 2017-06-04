@@ -33,6 +33,12 @@ var cameraImage;
 var restroomImage;
 var secBarImage;
 
+//Variables
+var btn;
+var completo;
+var cont = 0;
+var close = true;
+
 function preload() {
   userImage = loadImage("images/user.png");
   wallImage = loadImage("images/wall.jpg");
@@ -48,11 +54,16 @@ function preload() {
   cameraImage = loadImage("images/camera.png");
   restroomImage = loadImage("images/restroom.png");
   secBarImage = loadImage("images/accessDoor1.png");
+  completo = loadImage("images/Topologia.jpg");
 }
 
 function setup() {
   var cnv = createCanvas(1000, 544);
   cnv.position(180, 120);
+  btn = createButton('Topology');
+  btn.position(1200, 550);
+  btn.mousePressed(topology);
+
   backgnd = new Background();
   for (var i = 0; i < backgnd.rows; i++)
     for (var j = 0; j < backgnd.columns; j++) {
@@ -95,6 +106,8 @@ function setup() {
 
 function draw() {
   background('#dce7ff');
+  if(close == false)
+    image(completo, 250, 50, 600, 400);
   for (var i = 0; i < walls.length; i++)
     walls[i].show();
   for (var i = 0; i < scanners.length; i++)
@@ -178,12 +191,10 @@ function draw() {
       if (airplane.x == 0 && airplane.y == 10*32) {
         user.setY(8);
         window.open("seats.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
-				//setTimeOut(function(){}, 1000);
       }
 			if (airplane.x == 0 && airplane.y == 2*32) {
         user.setX(2);
         window.open("distance.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
-				//setTimeOut(function(){}, 1000);
       }
     }
   }
@@ -192,8 +203,6 @@ function draw() {
 		user.setX(27);
 		window.open("checkin.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
 	}
-
-
 
   secBar.show();
   restroom.show();
@@ -219,5 +228,18 @@ function keyPressed() {
   if (keyCode === UP_ARROW) {
     if (backgnd.matrix[user.y / 32 - 1][user.x / 32] != 'w')
       user.move(3);
+  }
+}
+
+function topology(){
+  if(cont == 0){
+    close = false;
+    cont = 1;
+    btn.html("Close");
+  }
+  else{
+    close = true;
+    cont = 0;
+    btn.html("Topology");
   }
 }

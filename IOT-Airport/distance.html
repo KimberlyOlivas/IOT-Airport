@@ -18,12 +18,16 @@
     </div>
   </body>
   <script>
+    var btn;
+    var maleta;
+    var cont = 0;
+    var close = true;
     var x = 200;
     var y = 150;
     var frame = 0;
     var dir = 1;
     var bkgrd;
-    var canvas
+    var canvas;
     var user4Image;
     var cellphoneImage;
     var notificationImage;
@@ -40,8 +44,14 @@
       cellphoneImage = loadImage("images/cellphone.png");
       baggage2 = loadImage("images/baggage2.png");
       msgBagImage = loadImage("images/msgBag.png");
-      exitImage = loadImage("images/exit.png")
-      var canvas = createCanvas(1100,650);
+      exitImage = loadImage("images/exit.png");
+      maleta = loadImage("images/Maleta.jpg");
+
+      canvas = createCanvas(1100,650);
+      btn = createButton('Topology');
+      btn.position(970, 550);
+      btn.mousePressed(topology);
+      btn.parent('canvas');
       canvas.parent('canvas');
       modal.style.display = "block";
     }
@@ -66,6 +76,8 @@
         }
         if(x === 100 && forgot == false)
           forgot = true;
+        if(close == false)
+          image(maleta, 250, 100, 550, 400);
         if(x >= 820){
           modal.style.display = "none";
           window.close();
@@ -82,6 +94,19 @@
           x -= 50;
           dir = 0;
           frame--;
+      }
+    }
+
+    function topology(){
+      if(cont == 0){
+        close = false;
+        cont = 1;
+        btn.html("Close");
+      }
+      else{
+        close = true;
+        cont = 0;
+        btn.html("Topology");
       }
     }
   </script>

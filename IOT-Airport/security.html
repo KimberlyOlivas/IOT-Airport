@@ -18,6 +18,10 @@
     </div>
   </body>
   <script>
+    var btn;
+    var security;
+    var cont = 0;
+    var close = true;
     var x = 200;
     var y = 150;
     var frame = 0;
@@ -43,7 +47,13 @@
     	  computer1 = loadImage("images/computer1.png");
     	  computer2 = loadImage("images/computer2.png");
     	  computer3 = loadImage("images/computer3.png");
+        security = loadImage("images/Security.jpg");
+
         canvas = createCanvas(1100,650);
+        btn = createButton('Topology');
+        btn.position(970, 550);
+        btn.mousePressed(topology);
+        btn.parent('canvas');
         canvas.parent('canvas');
         modal.style.display = "block";
     }
@@ -67,6 +77,8 @@
     		  image(computer3, 50, 100, 350, 300);
         if(x === 550 )
           frame2 = 1;
+        if(close == false)
+          image(security, 270, 50, 550, 400);
         if(x >= 820){
           modal.style.display = "none";
           window.close();
@@ -95,6 +107,19 @@
         x -= 50;
         dir = 0;
         frame--;
+      }
+    }
+
+    function topology(){
+      if(cont == 0){
+        close = false;
+        cont = 1;
+        btn.html("Close");
+      }
+      else{
+        close = true;
+        cont = 0;
+        btn.html("Topology");
       }
     }
   </script>

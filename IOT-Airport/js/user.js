@@ -3,7 +3,7 @@ function User(x,y){
 	this.y = y;
 	this.frame = 0;
 	this.radius = 16;
-	this.direction = 3;  // 0:down 1:left 2:right 3:up
+	this.direction = 1;  // 0:down 1:left 2:right 3:up
 
 	this.show = function(){
 		image(userImage, this.x, this.y, 32, 32, 32*this.frame, 32*this.direction, 32, 32);

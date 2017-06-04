@@ -19,7 +19,8 @@
       </div>
       <div class="modal-body" id="body" align="center" style="display: inline-block; width: 50%; height:100%">
         <center>
-          <div class="container" style="margin: 30% auto;">
+          <img id="baggageT" src="images/Kiosko baggage.jpg" width="600" height="350" style="display:none; position:absolute; top:100px; left:270px;">
+          <div id = "info" class="container" style="margin: 30% auto;">
             <center>
               <img id="Icell" src="images/QRCell2.png" width="200" style="width:90px;height:90px;">
               <span> 1. Scan your QR code in the panel below.</span><br>
@@ -38,15 +39,22 @@
           </div>
         </center>
       </div>
+      <div style="display: inline-block; vertical-align:top; margin-right: 0px;">
+        <button id="topology" class="btn btn-default" type="button" style="float:right;"> Topology </button>
+      </div>
     </div>
   </div>
   </div>
   </div>
 </body>
 <script>
+  var cont = 0;
   var modal = document.getElementById('modal');
   var body = document.getElementById('body');
   var btn = document.getElementById("okBtn");
+  var btnT = document.getElementById("topology");
+  var img = document.getElementById("baggageT");
+  var div = document.getElementById("info");
   var steps = 1;
 
   body.style.backgroundImage = "url('images/zoomMachine.png')";
@@ -59,6 +67,21 @@
   btn.onclick = function() {
     modal.style.display = "none";
     window.close();
+  }
+
+  btnT.onclick = function() {
+    if(cont == 0){
+      img.style.display = "block";
+      div.style.display = "none";
+      cont = 1;
+      btnT.innerText = "Close";
+    }
+    else{
+      img.style.display = "none";
+      div.style.display = "block";
+      cont = 0;
+      btnT.innerText = "Topology";
+    }
   }
 
 

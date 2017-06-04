@@ -18,6 +18,10 @@
     </div>
   </body>
   <script>
+    var btn;
+    var tienda;
+    var cont = 0;
+    var close = true;
     var x = 850;
     var y = 190;
     var frame = 3;
@@ -44,8 +48,14 @@
       offer3Image = loadImage("images/offer3.png");
       offer4Image = loadImage("images/offer4.png");
       offer5Image = loadImage("images/offer5.png");
+      tienda = loadImage("images/Tienda.jpg");
+
       canvas = createCanvas(1100,650);
-      canvas.parent('canvas');
+      btn = createButton('Topology');
+  	  btn.position(970, 550);
+      btn.mousePressed(topology);
+  	  btn.parent('canvas');
+  	  canvas.parent('canvas');
       modal.style.display = "block";
     }
 
@@ -74,10 +84,12 @@
           image(offer5Image, 100, 60, 400, 100);
           cont5 = true;
         }
+        if(close == false)
+          image(tienda, 300, 50, 500, 400);
         if(x === 300){
           modal.style.display = "none";
-		  window.close();
-		}
+		      window.close();
+		     }
     }
 
     function keyPressed(){
@@ -85,6 +97,19 @@
 	      x -= 50;
     	  frame--;
     	}
+    }
+
+    function topology(){
+      if(cont == 0){
+        close = false;
+        cont = 1;
+        btn.html("Close");
+      }
+      else{
+        close = true;
+        cont = 0;
+        btn.html("Topology");
+      }
     }
   </script>
 </html>

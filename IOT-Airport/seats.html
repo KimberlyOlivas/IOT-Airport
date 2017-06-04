@@ -18,6 +18,10 @@
     </div>
   </body>
   <script>
+    var btn;
+    var asiento;
+    var cont = 0;
+    var close = true;
     var x = 20;
     var y = 150;
     var frame1 = 0;
@@ -40,7 +44,13 @@
       cellphoneImage = loadImage("images/cellphone.png");
       msg1Image = loadImage("images/message1.png");
       msg2Image = loadImage("images/message2.png");
+      asiento = loadImage("images/Asiento.jpg");
+
       canvas = createCanvas(1100,650);
+      btn = createButton('Topology');
+      btn.position(970, 550);
+      btn.mousePressed(topology);
+      btn.parent('canvas');
       canvas.parent('canvas');
       modal.style.display = "block";
     }
@@ -63,6 +73,8 @@
           image(msg2Image, 55, 200, 200, 300);
           frame2 = 0;
         }
+        if(close == false)
+          image(asiento, 280, 50, 550, 400);
         if(x >= 820){
           modal.style.display = "none";
           window.close();
@@ -74,6 +86,19 @@
           x += 50;
       		frame1++;
     	}
+    }
+
+    function topology(){
+      if(cont == 0){
+        close = false;
+        cont = 1;
+        btn.html("Close");
+      }
+      else{
+        close = true;
+        cont = 0;
+        btn.html("Topology");
+      }
     }
   </script>
 </html>

@@ -17,7 +17,8 @@
       </div>
       <div class="modal-body" id="body" align="center" style="display: inline-block; width: 50%; height:100%">
         <center>
-          <div class="container" style="margin: 27% auto;">
+          <img id="migrationT" src="images/Kiosko migration.jpg" width="540" height="330" style="display:none; position:absolute; top:100px; left:240px;">
+          <div id="info" class="container" style="margin: 27% auto;">
             <center>
               <h4>Migration process..</h4>
               <span>First: <img id="Ipassport" src="images/passportIcon.png" width="60" height="60"></span>
@@ -29,13 +30,20 @@
           </div>
         </center>
       </div>
+      <div style="display: inline-block; vertical-align:top; margin-right: 0px;"><br>
+        <button id="topology" class="btn btn-default" type="button" style="float:right;"> Topology </button>
+      </div>
     </div>
   </div>
 </body>
 <script>
+  var cont = 0;
   var modal = document.getElementById('modal');
   var body = document.getElementById('body');
   var btn = document.getElementById("okBtn");
+  var btnT = document.getElementById("topology");
+  var img = document.getElementById("migrationT");
+  var div = document.getElementById("info");
   var steps = 1;
 
   body.style.backgroundImage = "url('images/zoomMachine.png')";
@@ -48,6 +56,21 @@
   btn.onclick = function() {
     modal.style.display = "none";
     window.close();
+  }
+
+  btnT.onclick = function() {
+    if(cont == 0){
+			img.style.display = "block";
+      div.style.display = "none";
+			cont = 1;
+			btnT.innerText = "Close";
+		}
+		else{
+			img.style.display = "none";
+      div.style.display = "block";
+			cont = 0;
+			btnT.innerText = "Topology";
+		}
   }
 
   function allowDrop(ev) {   

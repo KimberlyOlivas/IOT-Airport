@@ -16,50 +16,62 @@
         </div>
       </div>
     </div>
-	
+
   </body>
   <script>
+    var btnT;
+    var maleta;
+    var cont = 0;
+    var close = true;
     var x = 20;
     var y = 150;
-	var btn = false;
+	  var btn = false;
     var frame = 0;
-	var search = false;
+	  var search = false;
     var bkgrd;
     var canvas;
     var user2Image;
     var cellphoneImage;
-	var baggage2;
+	  var baggage2;
     var modal = document.getElementById('modal');
 
     function setup(){
-	  bkgrd = loadImage("images/zoomBaggage.jpg");
+  	  bkgrd = loadImage("images/zoomBaggage.jpg");
       cellphoneImage = loadImage("images/baggageCell.png");
-	  baggage2 = loadImage("images/baggage2.png");
-	  user3Image = loadImage("images/user3.png");
-      var canvas = createCanvas(1100,650);
-	  button = createButton('Search baggage');
-	  button.position(850, 550);
+  	  baggage2 = loadImage("images/baggage2.png");
+  	  user3Image = loadImage("images/user3.png");
+      maleta = loadImage("images/Maleta.jpg");
+
+      canvas = createCanvas(1100,650);
+  	  button = createButton('Search baggage');
+  	  button.position(850, 550);
       button.mousePressed(gps);
-	  button.parent('canvas');
-	  canvas.parent('canvas');
+  	  button.parent('canvas');
+      btnT = createButton('Topology');
+      btnT.position(700, 550);
+      btnT.mousePressed(topology);
+      btnT.parent('canvas');
+  	  canvas.parent('canvas');
       modal.style.display = "block";
     }
 
     function draw(){
         background(bkgrd);
       	image(user3Image, x, y, 265, 495, 265*frame, 0, 265, 494);
-		if(search == false)
+    		if(search == false)
           image(baggage2, 520, 200, 130, 100);
         if(search == true)
           image(baggage2, x, 420, 130, 100);
-		if(btn === true)
-		  image(cellphoneImage, 700, 10);
+    		if(btn === true)
+    		  image(cellphoneImage, 700, 10);
         if(frame  === 3)
           frame = 0;
-		if(x == 520){
-			search = true;
-			btn = false;
-		}
+    		if(x == 520){
+    			search = true;
+    			btn = false;
+    		}
+        if(close == false)
+          image(maleta, 280, 70, 550, 400);
         if(x >= 820){
           modal.style.display = "none";
           window.close();
@@ -72,10 +84,23 @@
       	  frame++;
     	}
     }
-	
+
 	function gps(){
-		btn = true;	
+		btn = true;
 	}
-	
+
+  function topology(){
+    if(cont == 0){
+      close = false;
+      cont = 1;
+      btnT.html("Close");
+    }
+    else{
+      close = true;
+      cont = 0;
+      btnT.html("Topology");
+    }
+  }
+
   </script>
 </html>
