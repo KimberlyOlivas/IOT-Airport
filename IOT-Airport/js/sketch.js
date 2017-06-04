@@ -150,6 +150,17 @@ function draw() {
     }
   }
 
+  for (var i = 0; i < carousels.length; i++) {
+    var car = carousels[i];
+    if (user.colission(car)) {
+      if ((car.x == 9*32 && car.y == 1*32) ||
+      ((user.x == 9*32 || user.x == 10*32) && user.y == 4*32)) {
+        user.setX(14);
+        window.open("gps.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
+      }
+    }
+  }
+
 	for (var i = 0; i < chairs.length; i++) {
     var chair = chairs[i];
     if (user.colission(chair)) {
@@ -182,15 +193,7 @@ function draw() {
 		window.open("checkin.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
 	}
 
-  for (var i = 0; i < carousels.length; i++) {
-    var carousel = carousels[i];
-    if (user.colission(carousel)) {
-      if ((carousel.x == 7*32 &&  carousel.x == 8*32) || (carousel.y == 1*32 || carousel.y == 3*32)) {
-        user.setX(14);
-        window.open("gps.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
-      }
-    }
-  }
+
 
   secBar.show();
   restroom.show();
