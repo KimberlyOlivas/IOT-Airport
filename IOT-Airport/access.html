@@ -62,22 +62,22 @@
         var btn = document.getElementById("okBtn");
         var text = document.getElementsByTagName("h4")[1];
         var div = document.getElementById("divCheck");
-		var span = document.getElementById("span");
-		var check = document.getElementById("access");
-		ev.target.appendChild(imag);
+		    var span = document.getElementById("span");
+		    var check = document.getElementById("access");
+		    ev.target.appendChild(imag);
         document.getElementById("Ifingerprint").src = "images/fingerprintIconC.png";
         text.innerText = "Verifying your boarding information..";
         window.alert("Successful fingerprint review!");
         ev.target.removeChild(imag);
-		div.style.display = "none";
-		span.style.display = "none";
-		setTimeout(bordingDetails,1000,text,btn,check);
+		    div.style.display = "none";
+		    span.style.display = "none";
+		    setTimeout(bordingDetails,1000,text,btn,check);
     }
-	
-	function bordingDetails(text,btn,check){
-		text.innerText = "Boarding details: \n ID: USER \n Flight: 1001 \n Airplane: 14ZE Seat: A15 \n\n You are ready to board!";
-		check.style.display = "block";
-		btn.style.display = "block";
-	}
+
+	  function bordingDetails(text,btn,check){
+		    text.innerText = "Boarding details: \n ID: USER \n Flight: 1001 \n Airplane: 14ZE Seat: A15 \n\n You are ready to board!";
+		    check.style.display = "block";
+		    btn.style.display = "block";
+	  }
   </script>
 </html>
