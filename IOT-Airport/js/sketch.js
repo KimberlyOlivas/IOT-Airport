@@ -88,8 +88,8 @@ function setup() {
         walls.push(new Wall(j * 32, i * 32));
         restroom = new Restroom(j * 32, i * 32);
       }
-        if (backgnd.matrix[i][j] === 'sb')
-          secBar = new SecurityBar(j * 32, i * 32);
+      if (backgnd.matrix[i][j] === 'sb')
+        secBar = new SecurityBar(j * 32, i * 32);
     }
 }
 
@@ -181,6 +181,16 @@ function draw() {
 		user.setX(27);
 		window.open("checkin.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
 	}
+
+  for (var i = 0; i < carousels.length; i++) {
+    var carousel = carousels[i];
+    if (user.colission(carousel)) {
+      if ((carousel.x == 7*32 &&  carousel.x == 8*32) || (carousel.y == 1*32 || carousel.y == 3*32)) {
+        user.setX(14);
+        window.open("gps.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
+      }
+    }
+  }
 
   secBar.show();
   restroom.show();
