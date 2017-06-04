@@ -4,7 +4,8 @@ var user;
 var coffee;
 var board;
 var office;
-
+var restroom;
+var secBar;
 
 //Arrays
 var walls = [];
@@ -28,7 +29,9 @@ var boardImage;
 var officeImage;
 var carouselImage;
 var vendingImage;
-var cameraImage
+var cameraImage;
+var restroomImage;
+var secBarImage;
 
 function preload() {
   userImage = loadImage("images/user.png");
@@ -43,6 +46,8 @@ function preload() {
   carouselImage = loadImage("images/carousel1.png");
   vendingImage = loadImage("images/vendingMachine.png");
   cameraImage = loadImage("images/camera.png");
+  restroomImage = loadImage("images/restroom.png");
+  secBarImage = loadImage("images/accessDoor1.png");
 }
 
 function setup() {
@@ -79,6 +84,12 @@ function setup() {
         walls.push(new Wall(j * 32, i * 32));
         cameras.push(new Camera(j * 32, i * 32));
       }
+      if (backgnd.matrix[i][j] === 'r'){
+        walls.push(new Wall(j * 32, i * 32));
+        restroom = new Restroom(j * 32, i * 32);
+      }
+        if (backgnd.matrix[i][j] === 'sb')
+          secBar = new SecurityBar(j * 32, i * 32);
     }
 }
 
@@ -107,18 +118,28 @@ function draw() {
 		window.open("shops.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
 	}
 
+  if(user.colission(office)){
+		user.setX(10);
+		window.open("office.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
+	}
+
+  if(user.colission(secBar)){
+		user.setX(30);
+		window.open("security.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
+	}
+
   for (var i = 0; i < machines.length; i++) {
     var machine = machines[i];
     if (user.colission(machine)) {
-      if (machine.x == 27*32 && machine.y == 11*32) {
-        user.setY(8);
+      if (machine.x == 27*32 && machine.y == 10*32) {
+        user.setY(7);
         window.open("identity.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
       }
 			if (machine.x == 21*32 && machine.y == 5*32) {
-        user.setY(8);
+        user.setY(7);
         window.open("baggage.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
       }
-			if (machine.x == 5*32 && machine.y == 14*32) {
+			if (machine.x == 5*32 && machine.y == 13*32) {
         user.setX(3);
         window.open("access.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
       }
@@ -133,7 +154,7 @@ function draw() {
     var chair = chairs[i];
     if (user.colission(chair)) {
       if ((chair.x == 11*32 || chair.x == 12*32 || chair.x == 13*32 || chair.x == 14*32)
-						&& (chair.y == 12*32 || chair.y == 13*32 )) {
+						&& (chair.y == 11*32 || chair.y == 12*32 )) {
         user.setX(8);
         window.open("airplaneNotif.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
       }
@@ -143,7 +164,7 @@ function draw() {
 	for (var i = 0; i < airplanes.length; i++) {
     var airplane = airplanes[i];
     if (user.colission(airplane)) {
-      if (airplane.x == 0 && airplane.y == 11*32) {
+      if (airplane.x == 0 && airplane.y == 10*32) {
         user.setY(8);
         window.open("seats.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
 				//setTimeOut(function(){}, 1000);
@@ -156,18 +177,13 @@ function draw() {
     }
   }
 
-	if(user.x == 28*32 && user.y == 14*32 ){
+	if(user.x == 28*32 && user.y == 13*32 ){
 		user.setX(27);
 		window.open("checkin.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
 	}
 
-	if(user.x == 28*32 && user.y == 1*32 ){
-		user.setX(30);
-		window.open("security.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
-	}
-
-
-
+  secBar.show();
+  restroom.show();
   coffee.show();
   user.show();
   board.show();

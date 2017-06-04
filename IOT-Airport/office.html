@@ -10,28 +10,61 @@
   <div id="modal" class="modal">
     <div class="modal-content container">
       <div class="modal-body" id="body" style="display: inline-block; width: 100%; height:100%;">
-        <div class="container" id= "alert1" style="margin: 5% 25%; height: 488px; width: 250px; border-radius: 25px;">
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="container" id="control1" style="margin: 5% auto; height: 400px; width: 480px;">
+          <br><br><br><br><br><br><br>
+          <center>
+            <div><button id="cantPersBtn" class="btn btn-default" type="button"> Amount of people inside the airport </button></div><br>
+            <div><button id="cantAvionBtn" class="btn btn-default" type="button"> Amount of people on board </button></div><br>
+            <div><button id="ok1Btn" class="btn btn-default" type="button"> OK </button></div>
+          </center>
+        </div>
+        <div class="container" id="control2" style="margin: 5% auto; height: 400px; width: 480px;">
+          <br><br><br><br><br><br><br><br><br><br><br><br>
+          <span>&nbsp&nbsp&nbsp&nbsp&nbsp
+              <button id="ok2Btn" class="btn btn-default" type="button"> OK </button>
+            </span>
+          <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <button id="back2Btn" class="btn btn-default" type="button"> GO BACK </button>
+            </span>
+        </div>
+        <div class="container" id="control3" style="margin: 5% auto; height: 400px; width: 480px;">
+          <br><br><br><br><br><br><br>
           <center>
             <div>
-              <button id="openBtn" class="btn btn-default" type="button"> OPEN </button>
+              <button id="f1Btn" class="btn btn-default" type="button"> Flight 1005 </button>
+              <button id="f2Btn" class="btn btn-default" type="button"> Flight 1006 </button><br>
+              <button id="f3Btn" class="btn btn-default" type="button"> Flight 2001 </button>
+              <button id="f4Btn" class="btn btn-default" type="button"> Flight 2002 </button>
+              <br>
+              <span>&nbsp&nbsp&nbsp
+                <button id="ok3Btn" class="btn btn-default" type="button"> OK </button>
+              </span>
+              <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <button id="back3Btn" class="btn btn-default" type="button"> GO BACK </button>
+              </span>
             </div>
           </center>
         </div>
-        <div class="container" id= "alert2" style="margin: 5% 25%; height: 488px; width: 250px; border-radius: 25px;">
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="container" id="control31" style="margin: 5% auto; height: 400px; width: 480px;">
+          <br><br><br><br><br><br><br><br><br><br><br><br>
           <center>
-            <div>
-              <button id="okBtn" class="btn btn-default" type="button"> OK </button>
-            </div>
-          </center>
-        </div>
-        <div class="container" id= "alert2" style="margin: 5% 25%; height: 488px; width: 250px; border-radius: 25px;">
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-          <center>
-            <div>
-              <button id="okBtn" class="btn btn-default" type="button"> OK </button>
-            </div>
+            <span>&nbsp
+              <button id="ok31Btn" class="btn btn-default" type="button"> OK </button>
+            </span>
+            <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <button id="back31Btn" class="btn btn-default" type="button"> GO BACK </button>
           </center>
         </div>
       </div>
@@ -41,26 +74,120 @@
 <script>
   var modal = document.getElementById('modal');
   var body = document.getElementById('body');
-  var open = document.getElementById("openBtn");
-  var ok = document.getElementById("okBtn");
 
+  //Botones
+  var cantPersBtn = document.getElementById("cantPersBtn");
+  var cantAvionBtn = document.getElementById("cantAvionBtn");
+  var ok1btn = document.getElementById("ok1Btn");
+  var ok2btn = document.getElementById("ok2Btn");
+  var ok3btn = document.getElementById("ok3Btn");
+  var ok31btn = document.getElementById("ok31Btn");
+  var back2btn = document.getElementById("back2Btn");
+  var back3btn = document.getElementById("back3Btn");
+  var back31btn = document.getElementById("back31Btn");
+  var flight1 = document.getElementById("f1Btn");
+  var flight2 = document.getElementById("f2Btn");
+  var flight3 = document.getElementById("f3Btn");
+  var flight4 = document.getElementById("f4Btn");
 
-  body.style.backgroundImage = "url('images/zoomOffice.png')";
-  body.style.backgroundRepeat= "no-repeat";
-  body.style.backgroundSize= "auto 100%";
-  body.style.backgroundPosition= "center";
+  var menu = document.getElementById("control1");
+  var cantPers = document.getElementById("control2");
+  var cantAvion = document.getElementById("control3");
+  var avion = document.getElementById("control31");
 
-  modal.style.display = "block";
-
-  open.onclick = function() {
-    alert1.style.display = "none";
-    alert2.style.display = "block";
-  }
-
-  ok.onclick = function() {
+  ok1btn.onclick = function() {
     modal.style.display = "none";
     window.close();
+  };
+  ok2btn.onclick = function() {
+    modal.style.display = "none";
+    window.close();
+  };
+  ok3btn.onclick = function() {
+    modal.style.display = "none";
+    window.close();
+  };
+  ok31btn.onclick = function() {
+    modal.style.display = "none";
+    window.close();
+  };
+
+  cantPersBtn.onclick = function() {
+    menu.style.display = "none";
+    cantPers.style.display = "block";
+  }
+  cantAvionBtn.onclick = function() {
+    menu.style.display = "none";
+    cantAvion.style.display = "block";
+  }
+  back2btn.onclick = function() {
+    cantPers.style.display = "none";
+    menu.style.display = "block";
   }
 
-  </script>
+  back3btn.onclick = function() {
+    cantAvion.style.display = "none";
+    menu.style.display = "block";
+  }
+
+  back31btn.onclick = function() {
+    avion.style.display = "none";
+    cantAvion.style.display = "block";
+  }
+
+  flight1.onclick = function() {
+    cantAvion.style.display = "none";
+    avion.style.backgroundImage = "url('images/control3.1.png')";
+    avion.style.display = "block";
+  }
+  flight2.onclick = function() {
+    cantAvion.style.display = "none";
+    avion.style.backgroundImage = "url('images/control3.2.png')";
+    avion.style.display = "block";
+  }
+  flight3.onclick = function() {
+    cantAvion.style.display = "none";
+    avion.style.backgroundImage = "url('images/control3.3.png')";
+    avion.style.display = "block";
+  }
+  flight4.onclick = function() {
+    control3.style.display = "none";
+    avion.style.backgroundImage = "url('images/control3.4.png')";
+    avion.style.display = "block";
+  }
+
+  //Vistas de pc
+
+  body.style.backgroundImage = "url('images/zoomOffice.jpg')";
+  body.style.backgroundRepeat = "no-repeat";
+  body.style.backgroundSize = "100% 100%";
+  body.style.backgroundPosition = "center";
+
+  menu.style.backgroundImage = "url('images/control1.png')";
+  menu.style.backgroundRepeat = "no-repeat";
+  menu.style.backgroundSize = "auto 100%";
+  menu.style.backgroundPosition = "center";
+
+  cantPers.style.backgroundImage = "url('images/control2.png')";
+  cantPers.style.backgroundRepeat = "no-repeat";
+  cantPers.style.backgroundSize = "auto 100%";
+  cantPers.style.backgroundPosition = "center";
+
+  cantAvion.style.backgroundImage = "url('images/control3.png')";
+  cantAvion.style.backgroundRepeat = "no-repeat";
+  cantAvion.style.backgroundSize = "auto 100%";
+  cantAvion.style.backgroundPosition = "center";
+
+
+  avion.style.backgroundRepeat = "no-repeat";
+  avion.style.backgroundSize = "auto 100%";
+  avion.style.backgroundPosition = "center";
+
+  modal.style.display = "block";
+  menu.style.display = "block";
+  cantPers.style.display = "none";
+  cantAvion.style.display = "none";
+  avion.style.display = "none";
+</script>
+
 </html>
