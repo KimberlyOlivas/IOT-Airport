@@ -16,53 +16,50 @@
         </div>
       </div>
     </div>
+	
   </body>
   <script>
     var x = 20;
     var y = 150;
-    var frame1 = 0;
-    var frame2 = 0;
+	var btn = false;
+    var frame = 0;
+	var search = false;
     var bkgrd;
     var canvas;
-    var lightImage;
     var user2Image;
     var cellphoneImage;
-    var notificationImage;
-    var msg1Image;
-    var msg2Image;
+	var baggage2;
     var modal = document.getElementById('modal');
 
     function setup(){
-      bkgrd = loadImage("images/zoomSeats.jpg");
-      lightImage = loadImage("images/lights.png");
-      user2Image = loadImage("images/user3.png");
-      notificationImage = loadImage("images/notification.png");
-      cellphoneImage = loadImage("images/cellphone.png");
-      msg1Image = loadImage("images/message1.png");
-      msg2Image = loadImage("images/message2.png");
-      canvas = createCanvas(1100,650);
-      canvas.parent('canvas');
+	  bkgrd = loadImage("images/zoomBaggage.jpg");
+      cellphoneImage = loadImage("images/baggageCell.png");
+	  baggage2 = loadImage("images/baggage2.png");
+	  user3Image = loadImage("images/user3.png");
+      var canvas = createCanvas(1100,650);
+	  button = createButton('Search baggage');
+	  button.position(850, 550);
+      button.mousePressed(gps);
+	  button.parent('canvas');
+	  canvas.parent('canvas');
       modal.style.display = "block";
     }
 
     function draw(){
         background(bkgrd);
-        image(lightImage, 900, 250, 50, 70, 1200*frame2, 0, 1200, 1812);
-      	image(user2Image, x, y, 265, 495, 265*frame1, 0, 265, 494);
-        if(frame1  === 3)
-          frame1 = 0;
-        if(x === 270){
-          image(cellphoneImage, -100, 50);
-          image(notificationImage, 50, 100, 100, 100);
-          image(msg1Image, 55, 200, 200, 300);
-          frame2 = 1;
-        }
-        if(x === 770){
-          image(cellphoneImage, -100, 50);
-          image(notificationImage, 50, 100, 100, 100);
-          image(msg2Image, 55, 200, 200, 300);
-          frame2 = 0;
-        }
+      	image(user3Image, x, y, 265, 495, 265*frame, 0, 265, 494);
+		if(search == false)
+          image(baggage2, 520, 200, 130, 100);
+        if(search == true)
+          image(baggage2, x, 420, 130, 100);
+		if(btn === true)
+		  image(cellphoneImage, 700, 10);
+        if(frame  === 3)
+          frame = 0;
+		if(x == 520){
+			search = true;
+			btn = false;
+		}
         if(x >= 820){
           modal.style.display = "none";
           window.close();
@@ -72,8 +69,13 @@
     function keyPressed(){
     	if(keyCode === RIGHT_ARROW){
           x += 50;
-      		frame1++;
+      	  frame++;
     	}
     }
+	
+	function gps(){
+		btn = true;	
+	}
+	
   </script>
 </html>
