@@ -54,12 +54,17 @@ function preload() {
   cameraImage = loadImage("images/camera.png");
   restroomImage = loadImage("images/restroom.png");
   secBarImage = loadImage("images/accessDoor1.png");
-  completo = loadImage("images/Topologia.jpg");
 }
 
 function setup() {
   var cnv = createCanvas(1000, 544);
   cnv.position(180, 120);
+
+  completo = createImg("images/Topologia.jpg");
+  completo.position(350, 150);
+  completo.size(650, 400);
+  completo.hide();
+
   btn = createButton('Topology');
   btn.position(1200, 550);
   btn.mousePressed(topology);
@@ -106,8 +111,6 @@ function setup() {
 
 function draw() {
   background('#dce7ff');
-  if(close == false)
-    image(completo, 250, 50, 600, 400);
   for (var i = 0; i < walls.length; i++)
     walls[i].show();
   for (var i = 0; i < scanners.length; i++)
@@ -233,12 +236,12 @@ function keyPressed() {
 
 function topology(){
   if(cont == 0){
-    close = false;
+    completo.show();
     cont = 1;
     btn.html("Close");
   }
   else{
-    close = true;
+    completo.hide();
     cont = 0;
     btn.html("Topology");
   }
