@@ -1,83 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8"></meta>
-    <link rel = "stylesheet" title = "style" type = "text/css" href ="css/style.css"/>
-  </head>
-  <body>
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <div id="body" class="modal-body">
-          <div style="display: block">
-            <div style="display: inline-block; vertical-align:top; margin-right: 70px">
-              <br><br><h2> Your personal items: </h2>
-              <div><img id="fingerprint" src="images/fingerprint.png" raggable="true"
-                ondragstart="drag(event)" width="180" height="150" style="float:left"></div>
-            </div>
-            <div style="display: inline-block; vertical-align:top; margin-left: 120px">
-              <br><br><br><br><br><br>
-              <center>
+
+<head>
+  <meta charset="UTF-8"></meta>
+  <link rel="stylesheet" title="style" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+  <div id="modal" class="modal">
+    <div class="modal-content container">
+      <div style="display: inline-block; vertical-align:top; margin-right: 0px;">
+        <br><br>
+        <h2> Your personal items: </h2>
+        <div><img id="fingerprint" src="images/fingerprint.png" raggable="true" ondragstart="drag(event)" width="180" height="150" style="float:left"></div>
+      </div>
+      <div class="modal-body" id="body" align="center" style="display: inline-block; width: 50%; height:100%">
+        <center>
+          <div class="container" style="margin: 27% auto;">
+            <center>
               <h4>Boarding process..</h4>
-				<span id="span">Verify access and identity: <img id="Ifingerprint" src="images/fingerprintIcon.png" width="60" height="60"></span>
-				<h4>Please, show me your fingerprint! </h4>
-				<div id="divCheck" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-				<img id="access" src="images/access.png" width="200" height="150" style="display:none;"></span><br>
-				<button id="okBtn" class="btn btn-default" type="button" style="display:none;"> OK </button>
-              </center>
-            </div>
+              <span id="span">Verify access and identity: <img id="Ifingerprint" src="images/fingerprintIcon.png" width="60" height="60"></span>
+              <h4>Please, show me your fingerprint! </h4>
+              <div id="divCheck" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+              <img id="access" src="images/access.png" width="200" height="150" style="display:none;"></span><br>
+              <button id="okBtn" class="btn btn-default" type="button" style="display:none;"> OK </button>
+            </center>
           </div>
-        </div>
+        </center>
       </div>
     </div>
-  </body>
-  <script>
-    var modal = document.getElementById('modal');
-    var body = document.getElementById('body');
+  </div>
+</body>
+<script>
+  var modal = document.getElementById('modal');
+  var body = document.getElementById('body');
+  var btn = document.getElementById("okBtn");
+
+  body.style.backgroundImage = "url('images/zoomMachine.png')";
+  body.style.backgroundRepeat = "no-repeat";
+  body.style.backgroundSize = "auto 100%";
+  body.style.backgroundPosition = "center";
+
+  modal.style.display = "block";
+
+  btn.onclick = function() {
+    modal.style.display = "none";
+    window.close();
+  }
+
+  function allowDrop(ev) {   
+    ev.preventDefault();
+  }
+
+  function drag(ev) {   
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+
+  function drop(ev) {   
+    ev.preventDefault();   
+    var data = ev.dataTransfer.getData("text");
+    var imag = document.getElementById(data);
     var btn = document.getElementById("okBtn");
+    var text = document.getElementsByTagName("h4")[1];   
+    var div = document.getElementById("divCheck");
+    var span = document.getElementById("span");
+    var check = document.getElementById("access");
+    ev.target.appendChild(imag);
+    document.getElementById("Ifingerprint").src = "images/fingerprintIconC.png";
+    text.innerText = "Verifying your boarding information..";
+    window.alert("Successful fingerprint review!");
+    ev.target.removeChild(imag);
+    div.style.display = "none";
+    span.style.display = "none";
+    setTimeout(bordingDetails, 1000, text, btn, check);
+  }
 
-    body.style.backgroundImage = "url('images/zoomMachine.png')";
-    body.style.backgroundRepeat= "no-repeat";
-    body.style.backgroundSize= "auto 100%";
-    body.style.backgroundPosition= "center";
+  function bordingDetails(text, btn, check) {
+    text.innerText = "Boarding details: \n ID: USER \n Flight: 1001 \n Airplane: 14ZE Seat: A15 \n\n You are ready to board!";
+    check.style.display = "block";
+    btn.style.display = "block";
+  }
+</script>
 
-    modal.style.display = "block";
-
-    btn.onclick = function() {
-      modal.style.display = "none";
-      window.close();
-    }
-
-    function allowDrop(ev) {
-      ev.preventDefault();
-    }
-
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-    }
-
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        var imag = document.getElementById(data);
-        var btn = document.getElementById("okBtn");
-        var text = document.getElementsByTagName("h4")[1];
-        var div = document.getElementById("divCheck");
-		    var span = document.getElementById("span");
-		    var check = document.getElementById("access");
-		    ev.target.appendChild(imag);
-        document.getElementById("Ifingerprint").src = "images/fingerprintIconC.png";
-        text.innerText = "Verifying your boarding information..";
-        window.alert("Successful fingerprint review!");
-        ev.target.removeChild(imag);
-		    div.style.display = "none";
-		    span.style.display = "none";
-		    setTimeout(bordingDetails,1000,text,btn,check);
-    }
-
-	  function bordingDetails(text,btn,check){
-		    text.innerText = "Boarding details: \n ID: USER \n Flight: 1001 \n Airplane: 14ZE Seat: A15 \n\n You are ready to board!";
-		    check.style.display = "block";
-		    btn.style.display = "block";
-	  }
-  </script>
 </html>

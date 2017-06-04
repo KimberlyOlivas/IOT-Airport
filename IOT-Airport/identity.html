@@ -18,14 +18,17 @@
       </div>
       <div class="modal-body" id="body" align="center" style="display: inline-block; width: 50%; height:100%">
         <center>
-          <div class="container" style="margin: 25% auto;">
+          <div class="container" style="margin: 22% auto;">
             <center>
               <h4>Follow the steps..</h4>
-              <span>First:</span><img id="Iticket" src="images/ticketIcon.png" width="60" height="65">
-              <span>Second:</span><img id="Ipassport" src="images/passportIcon.png" width="60" height="60">
-              <span>Third:</span><img id="Ifingerprint" src="images/fingerprintIcon.png" width="60" height="60">
+              <span>1.</span><img id="Iticket" src="images/ticketIcon.png" width="60" height="65">
+              <span>2.</span><img id="Ipassport" src="images/passportIcon.png" width="60" height="60">
+              <span>3.</span><img id="Ifingerprint" src="images/fingerprintIcon.png" width="60" height="60">&nbsp
+              <span>4.</span><img id="Iface" src="images/facialIcon.png" width="60" height="60">
               <h4>First show me your ticket's QR code, please! </h4>
-              <div id="divCheck" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+              <div id="divCheck" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <img id="face" src="images/facial.png" width="180px" height="180px">
+              </div>
               <br><br>
               <button id="okBtn" class="btn btn-default" type="button" style="display:none;"> OK </button>
             </center>
@@ -39,7 +42,10 @@
   var modal = document.getElementById('modal');
   var body = document.getElementById('body');
   var btn = document.getElementById("okBtn");
+  var face = document.getElementById("face");
   var steps = 1;
+
+  face.style.display = "none";
 
   body.style.backgroundImage = "url('images/zoomMachine.png')";
   body.style.backgroundRepeat = "no-repeat";
@@ -80,26 +86,38 @@
       ev.target.appendChild(imag);
       steps++;
       document.getElementById("Ipassport").src = "images/passportIconC.png";
-      text.innerText = "Finally show me your fingerprint, please!";
+      text.innerText = "Show me your fingerprint, please!";
       window.alert("Successful passport review!");
       ev.target.removeChild(imag);
     }
     if (steps == 3 && data == "fingerprint") {   
       ev.target.appendChild(imag);
-      steps++;
       document.getElementById("Ifingerprint").src = "images/fingerprintIconC.png";
-      text.innerText = "Identity review completed. See you soon!";
       window.alert("Successful fingerprint review!");
       ev.target.removeChild(imag);
+      steps++;
     }
-    if (steps == 4) {
-      var check = document.createElement("img");
-      check.src = "images/idCheck.png";
-      check.width = "180";
-      check.height = "180";
-      ev.target.appendChild(check);
-      btn.style.display = "block";
-      window.alert("Successful identity review!");
+    if (steps == 4) {   
+      ev.target.appendChild(imag);
+      steps++;
+      text.innerText = "Stay in front of the screen to recognize your face.";
+      face.style.display = "block";
+      setTimeout(function(){
+        document.getElementById("Iface").src = "images/facialIconC.png";
+        window.alert("Successful facial recognition!");
+        face.style.display = "none";
+      }, 2000);
+      setTimeout(function(){
+        var check = document.createElement("img");
+        text.innerText = "Identity review completed. See you soon!";
+        btn.style.display = "block";
+        check.src = "images/idCheck.png";
+        check.width = "180";
+        check.height = "180";
+        ev.target.appendChild(check);
+        window.alert("Successful identity review!");
+      }, 2500);
+      ev.target.removeChild(imag);
     }
   }
 </script>
