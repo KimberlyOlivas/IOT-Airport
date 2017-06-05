@@ -21,7 +21,7 @@
     var btn;
     var maleta;
     var cont = 0;
-    var close = true;
+    var closeI = true;
     var x = 200;
     var y = 150;
     var frame = 0;
@@ -76,7 +76,7 @@
         }
         if(x === 100 && forgot == false)
           forgot = true;
-        if(close == false)
+        if(closeI == false)
           image(maleta, 250, 100, 550, 400);
         if(x >= 820){
           modal.style.display = "none";
@@ -99,12 +99,12 @@
 
     function topology(){
       if(cont == 0){
-        close = false;
+        closeI = false;
         cont = 1;
-        btn.html("Close");
+        btn.html("closeI");
       }
       else{
-        close = true;
+        closeI = true;
         cont = 0;
         btn.html("Topology");
       }

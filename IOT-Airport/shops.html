@@ -21,7 +21,7 @@
     var btn;
     var tienda;
     var cont = 0;
-    var close = true;
+    var closeI = true;
     var x = 850;
     var y = 190;
     var frame = 3;
@@ -84,7 +84,7 @@
           image(offer5Image, 100, 60, 400, 100);
           cont5 = true;
         }
-        if(close == false)
+        if(closeI == false)
           image(tienda, 300, 50, 500, 400);
         if(x === 300){
           modal.style.display = "none";
@@ -101,12 +101,12 @@
 
     function topology(){
       if(cont == 0){
-        close = false;
+        closeI = false;
         cont = 1;
-        btn.html("Close");
+        btn.html("closeI");
       }
       else{
-        close = true;
+        closeI = true;
         cont = 0;
         btn.html("Topology");
       }

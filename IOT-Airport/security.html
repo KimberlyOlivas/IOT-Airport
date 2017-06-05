@@ -21,7 +21,7 @@
     var btn;
     var security;
     var cont = 0;
-    var close = true;
+    var closeI = true;
     var x = 200;
     var y = 150;
     var frame = 0;
@@ -77,7 +77,7 @@
     		  image(computer3, 50, 100, 350, 300);
         if(x === 550 )
           frame2 = 1;
-        if(close == false)
+        if(closeI == false)
           image(security, 270, 50, 550, 400);
         if(x >= 820){
           modal.style.display = "none";
@@ -112,12 +112,12 @@
 
     function topology(){
       if(cont == 0){
-        close = false;
+        closeI = false;
         cont = 1;
-        btn.html("Close");
+        btn.html("closeI");
       }
       else{
-        close = true;
+        closeI = true;
         cont = 0;
         btn.html("Topology");
       }

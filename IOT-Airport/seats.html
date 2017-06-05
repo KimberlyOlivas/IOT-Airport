@@ -21,7 +21,7 @@
     var btn;
     var asiento;
     var cont = 0;
-    var close = true;
+    var closeI = true;
     var x = 20;
     var y = 150;
     var frame1 = 0;
@@ -73,7 +73,7 @@
           image(msg2Image, 55, 200, 200, 300);
           frame2 = 0;
         }
-        if(close == false)
+        if(closeI == false)
           image(asiento, 280, 50, 550, 400);
         if(x >= 820){
           modal.style.display = "none";
@@ -90,12 +90,12 @@
 
     function topology(){
       if(cont == 0){
-        close = false;
+        closeI = false;
         cont = 1;
-        btn.html("Close");
+        btn.html("closeI");
       }
       else{
-        close = true;
+        closeI = true;
         cont = 0;
         btn.html("Topology");
       }

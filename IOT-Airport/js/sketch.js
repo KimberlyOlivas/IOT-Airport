@@ -225,7 +225,7 @@ function keyPressed() {
       user.move(1);
   }
   if (keyCode === RIGHT_ARROW) {
-    if (backgnd.matrix[user.y / 32][user.x / 32 + 1] != 'w'&& user.x/32!= 29)
+    if (backgnd.matrix[user.y / 32][user.x / 32 + 1] != 'w'&& user.x/32!= 30)
       user.move(2);
   }
   if (keyCode === UP_ARROW) {
