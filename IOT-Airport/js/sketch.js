@@ -16,6 +16,7 @@ var carousels = [];
 var vending = [];
 var cameras = [];
 var airplanes = [];
+var controls = [];
 
 //Images
 var userImage;
@@ -32,6 +33,7 @@ var vendingImage;
 var cameraImage;
 var restroomImage;
 var secBarImage;
+var controlImage;
 
 //Variables
 var btn;
@@ -54,6 +56,7 @@ function preload() {
   cameraImage = loadImage("images/camera.png");
   restroomImage = loadImage("images/restroom.png");
   secBarImage = loadImage("images/accessDoor1.png");
+  controlImage = loadImage("images/aircontrol.png");
 }
 
 function setup() {
@@ -82,6 +85,8 @@ function setup() {
         machines.push(new Machine(j * 32, i * 32));
       if (backgnd.matrix[i][j] === 'c')
         chairs.push(new Chair(j * 32, i * 32));
+      if (backgnd.matrix[i][j] === 'ac')
+        controls.push(new AirControl(j * 32, i * 32));
       if (backgnd.matrix[i][j] === 'a')
         airplanes.push(new Airplane(j * 32, i * 32));
       if (backgnd.matrix[i][j] === 'st')
@@ -100,7 +105,7 @@ function setup() {
         walls.push(new Wall(j * 32, i * 32));
         cameras.push(new Camera(j * 32, i * 32));
       }
-      if (backgnd.matrix[i][j] === 'r'){
+      if (backgnd.matrix[i][j] === 'r') {
         walls.push(new Wall(j * 32, i * 32));
         restroom = new Restroom(j * 32, i * 32);
       }
@@ -125,41 +130,43 @@ function draw() {
     vending[i].show();
   for (var i = 0; i < cameras.length; i++)
     cameras[i].show();
-		for (var i = 0; i < airplanes.length; i++)
-	    airplanes[i].show();
+  for (var i = 0; i < airplanes.length; i++)
+    airplanes[i].show();
+  for (var i = 0; i < controls.length; i++)
+    controls[i].show();
 
-	//EVENTS
-	if(user.colission(coffee)){
-		user.setX(20);
-		window.open("shops.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
-	}
+  //EVENTS
+  if (user.colission(coffee)) {
+    user.setX(20);
+    window.open("shops.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
+  }
 
-  if(user.colission(office)){
-		user.setX(10);
-		window.open("office.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
-	}
+  if (user.colission(office)) {
+    user.setX(10);
+    window.open("office.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
+  }
 
-  if(user.colission(secBar)){
-		user.setX(30);
-		window.open("security.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
-	}
+  if (user.colission(secBar)) {
+    user.setX(30);
+    window.open("security.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
+  }
 
   for (var i = 0; i < machines.length; i++) {
     var machine = machines[i];
     if (user.colission(machine)) {
-      if (machine.x == 27*32 && machine.y == 10*32) {
+      if (machine.x == 27 * 32 && machine.y == 10 * 32) {
         user.setY(7);
         window.open("identity.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
       }
-			if (machine.x == 21*32 && machine.y == 5*32) {
+      if (machine.x == 21 * 32 && machine.y == 5 * 32) {
         user.setY(7);
         window.open("baggage.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
       }
-			if (machine.x == 5*32 && machine.y == 13*32) {
+      if (machine.x == 5 * 32 && machine.y == 13 * 32) {
         user.setX(3);
         window.open("access.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
       }
-			if (machine.x == 5*32 && machine.y == 4*32) {
+      if (machine.x == 5 * 32 && machine.y == 4 * 32) {
         user.setX(8);
         window.open("migration.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1330,height=700,resizable=no');
       }
@@ -169,43 +176,43 @@ function draw() {
   for (var i = 0; i < carousels.length; i++) {
     var car = carousels[i];
     if (user.colission(car)) {
-      if ((car.x == 9*32 && car.y == 1*32) ||
-      ((user.x == 9*32 || user.x == 10*32) && user.y == 4*32)) {
+      if ((car.x == 9 * 32 && car.y == 1 * 32) ||
+        ((user.x == 9 * 32 || user.x == 10 * 32) && user.y == 4 * 32)) {
         user.setX(14);
         window.open("gps.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
       }
     }
   }
 
-	for (var i = 0; i < chairs.length; i++) {
+  for (var i = 0; i < chairs.length; i++) {
     var chair = chairs[i];
     if (user.colission(chair)) {
-      if ((chair.x == 11*32 || chair.x == 12*32 || chair.x == 13*32 || chair.x == 14*32)
-						&& (chair.y == 11*32 || chair.y == 12*32 )) {
+      if ((chair.x == 11 * 32 || chair.x == 12 * 32 || chair.x == 13 * 32 || chair.x == 14 * 32) &&
+        (chair.y == 11 * 32 || chair.y == 12 * 32)) {
         user.setX(8);
         window.open("airplaneNotif.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
       }
     }
   }
 
-	for (var i = 0; i < airplanes.length; i++) {
+  for (var i = 0; i < airplanes.length; i++) {
     var airplane = airplanes[i];
     if (user.colission(airplane)) {
-      if (airplane.x == 0 && airplane.y == 10*32) {
+      if (airplane.x == 0 && airplane.y == 10 * 32) {
         user.setY(8);
         window.open("seats.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
       }
-			if (airplane.x == 0 && airplane.y == 2*32) {
+      if (airplane.x == 0 && airplane.y == 2 * 32) {
         user.setX(2);
         window.open("distance.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
       }
     }
   }
 
-	if(user.x == 28*32 && user.y == 13*32 ){
-		user.setX(27);
-		window.open("checkin.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
-	}
+  if (user.x == 28 * 32 && user.y == 13 * 32) {
+    user.setX(27);
+    window.open("checkin.html", 'targetWindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=1600,height=700,resizable=no');
+  }
 
   secBar.show();
   restroom.show();
@@ -221,11 +228,11 @@ function keyPressed() {
       user.move(0);
   }
   if (keyCode === LEFT_ARROW) {
-    if (backgnd.matrix[user.y / 32][user.x / 32 - 1] != 'w'  && user.x/32 != 0)
+    if (backgnd.matrix[user.y / 32][user.x / 32 - 1] != 'w' && user.x / 32 != 0)
       user.move(1);
   }
   if (keyCode === RIGHT_ARROW) {
-    if (backgnd.matrix[user.y / 32][user.x / 32 + 1] != 'w'&& user.x/32!= 30)
+    if (backgnd.matrix[user.y / 32][user.x / 32 + 1] != 'w' && user.x / 32 != 30)
       user.move(2);
   }
   if (keyCode === UP_ARROW) {
@@ -234,13 +241,12 @@ function keyPressed() {
   }
 }
 
-function topology(){
-  if(cont == 0){
+function topology() {
+  if (cont == 0) {
     completo.show();
     cont = 1;
     btn.html("Close");
-  }
-  else{
+  } else {
     completo.hide();
     cont = 0;
     btn.html("Topology");
