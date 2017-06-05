@@ -221,11 +221,11 @@ function keyPressed() {
       user.move(0);
   }
   if (keyCode === LEFT_ARROW) {
-    if (backgnd.matrix[user.y / 32][user.x / 32 - 1] != 'w')
+    if (backgnd.matrix[user.y / 32][user.x / 32 - 1] != 'w'  && user.x/32 != 0)
       user.move(1);
   }
   if (keyCode === RIGHT_ARROW) {
-    if (backgnd.matrix[user.y / 32][user.x / 32 + 1] != 'w')
+    if (backgnd.matrix[user.y / 32][user.x / 32 + 1] != 'w'&& user.x/32!= 29)
       user.move(2);
   }
   if (keyCode === UP_ARROW) {
